@@ -11,17 +11,17 @@ async def on_ready():
     print("I am on service sir !")
 
 
-#This commented code is for user join and leave.
-# Will change this to send a message in server in a while.
-"""
 @client.event
-async def on_member_join(member):
-    print(f"{member} has joined this server.")
+async def on_member_join(member: discord.Member):
+    channel = await member.create_dm()
+    await channel.send("Welcome to our server")
+
 
 @client.event
-async def on_member_remove(member):
+async def on_member_remove(member: discord.Member):
     print(f"{member} has left this server.")
-"""
+    channel = await member.create_dm()
+    await channel.send("Sorry to see you go :frowning2:")
 
 @client.command()
 async def ping(ctx):
