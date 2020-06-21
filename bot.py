@@ -7,17 +7,17 @@ client = commands.Bot(command_prefix = ".")
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name="RAZERKrakenYT | #RazerStreamer!", url="https://www.twitch.tv/razerkrakenyt"))
-    await client.user.edit(username="Deathstalkers™")
+    # await client.user.edit(username="Deathstalkers™")
     print("I am on service sir !")
 
-"""
+
 #This commented code is for user join and leave.
 # Will change this to send a message in server in a while.
 
 @client.event
 async def on_member_join(member):
-    print(f"{member} has joined this server.")
-
+    await client.send_message(member,"Hi, Welcome to the Deathstalkers™ discord server")
+"""
 @client.event
 async def on_member_remove(member):
     print(f"{member} has left this server.")
@@ -36,16 +36,19 @@ async def delete(ctx, amount=1):
         await ctx.channel.purge(limit=amount+1)
 
 @client.command()
+@commands.has_role("DS-Bot")
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.channel.send(f"{member.mention} has been kicked.")
 
 @client.command()
+@commands.has_role("DS-Bot")
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.channel.send(f"{member.mention} has been banned.")
 
 @client.command()
+@commands.has_role("DS-Bot")
 async def unban(ctx, *, member):
     banned_list = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
