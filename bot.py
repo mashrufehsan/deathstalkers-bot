@@ -68,7 +68,7 @@ async def on_command_error(ctx, error):
 @client.event()
 async def on_message(message):
     if message.content.startswith(".echo"):
-        await ctx.channel.purge(limit=1)
+        await message.channel.purge(limit=1)
         msg = message.content.split()
         output = ""
         for word in msg[1:]:
