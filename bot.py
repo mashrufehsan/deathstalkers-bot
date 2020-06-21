@@ -74,6 +74,6 @@ async def on_message(message):
         for word in msg[1:]:
             output += word
             output += " "
-        await client.send_message(message.channel, output)
+        await message.channel.send(output)
 
 client.run(os.environ["DISCORD_TOKEN"]);
