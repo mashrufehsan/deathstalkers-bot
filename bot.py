@@ -76,4 +76,12 @@ async def echo(ctx):
         output += " "
     await ctx.channel.send(output)
 
+@client.command()
+@commands.has_role("DS-Bot")
+async def dm(ctx, member: discord.Member, *, content):
+    await ctx.channel.purge(limit=1)
+    channel = await member.create_dm()
+    await channel.send(content)
+    await ctx.channel.send(f'"{content}" has been sent to {member}')
+
 client.run(os.environ["DISCORD_TOKEN"]);
