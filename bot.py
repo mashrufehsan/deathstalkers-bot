@@ -7,7 +7,7 @@ client = commands.Bot(command_prefix = ".")
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name="RAZERKrakenYT | #RazerStreamer!", url="https://www.twitch.tv/razerkrakenyt"))
-    # await client.user.edit(username="Deathstalkers™")
+    await client.user.edit(username="Deathstalkers™")
     print("I am on service sir !")
 
 """
@@ -28,12 +28,12 @@ async def ping(ctx):
     await ctx.send(f"Currently pinging at {round(client.latency*1000)}ms")
 
 @client.command()
-@commands.has_permissions(manage_messages=True)
+@commands.has_role("DS-Bot")
 async def delete(ctx, amount=1):
     if amount==1:
         await ctx.send(f'{ctx.author.mention} Please define range of deletion after command.\nExample: ".delete 5"')
     else:
-        await ctx.channel.purge(limit=amount)
+        await ctx.channel.purge(limit=amount+1)
 
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason=None):
