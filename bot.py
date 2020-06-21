@@ -65,8 +65,5 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
 
-@client.event()
-async def on_message_delete(message):
-    await client.send_message(message.channel, f"{message.author} has deleted this message: {message.content}")
 
 client.run(os.environ["DISCORD_TOKEN"]);
