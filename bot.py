@@ -13,11 +13,11 @@ async def on_ready():
 
 #This commented code is for user join and leave.
 # Will change this to send a message in server in a while.
-
+"""
 @client.event
 async def on_member_join(member):
-    await client.send_message(member,"Hi, Welcome to the Deathstalkers™ discord server")
-"""
+    print(f"{member} has joined this server.")
+
 @client.event
 async def on_member_remove(member):
     print(f"{member} has left this server.")
@@ -65,5 +65,8 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
 
+@client.event()
+async def on_message_delete(message):
+    await client.send_message(message.channel, f"{message.author} has deleted this message: {message.content}")
 
 client.run(os.environ["DISCORD_TOKEN"]);
