@@ -65,15 +65,15 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
 
-@client.event
-async def on_message(message):
-    if message.content.startswith(".echo"):
-        await message.channel.purge(limit=1)
-        msg = message.content.split()
-        output = ""
-        for word in msg[1:]:
-            output += word
-            output += " "
-        await message.channel.send(output)
+@client.command()
+@commands.has_role("DS-Bot")
+async def echo(ctx):
+    await ctx.channel.purge(limit=1)
+    msg = ctx.message.content.split()
+    output = ""
+    for word in msg[1:]:
+        output += word
+        output += " "
+    await ctx.channel.send(output)
 
 client.run(os.environ["DISCORD_TOKEN"]);
