@@ -66,6 +66,7 @@ async def on_command_error(ctx, error):
         await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
 
 @client.event
+@commands.has_role("DS-Bot")
 async def on_message(message):
     if message.content.startswith(".echo"):
         await message.channel.purge(limit=1)
