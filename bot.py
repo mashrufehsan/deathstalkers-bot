@@ -65,5 +65,15 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
 
+@client.event()
+async def on_message(message):
+    if message.content.startswith(".echo"):
+        await ctx.channel.purge(limit=1)
+        msg = message.content.split()
+        output = ""
+        for word in msg[1:]:
+            output += word
+            output += " "
+        await client.send_message(message.channel, output)
 
 client.run(os.environ["DISCORD_TOKEN"]);
