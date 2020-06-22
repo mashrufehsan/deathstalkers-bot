@@ -6,23 +6,22 @@ import os
 import asyncio
 import youtube_dl
 
-### Bot identifier prefix ###
 client = commands.Bot(command_prefix = "!")
 
-### Bot launching ###
+### Bot booting ###
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Streaming(name="RAZERKrakenYT | #RazerStreamer!", url="https://www.twitch.tv/razerkrakenyt"))
     # await client.user.edit(username="Deathstalkers™")
     print("I am on service sir !")
 
-### On member join ###
+### Member joining ###
 @client.event
 async def on_member_join(member: discord.Member):
     channel = await member.create_dm()
     await channel.send("Welcome to our server")
 
-### On member left ###
+### Member leaving ###
 @client.event
 async def on_member_remove(member: discord.Member):
     print(f"{member} has left this server.")
@@ -34,7 +33,7 @@ async def on_member_remove(member: discord.Member):
 async def ping(ctx):
     await ctx.send(f"Currently pinging at {round(client.latency*1000)}ms")
 
-### Message deletion ###
+### Deleting ###
 @client.command()
 @commands.has_role("DS-Bot")
 async def delete(ctx, amount=1):
@@ -43,21 +42,21 @@ async def delete(ctx, amount=1):
     else:
         await ctx.channel.purge(limit=amount+1)
 
-### Kicking member ###
+### Kick ###
 @client.command()
 @commands.has_role("DS-Bot")
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.channel.send(f"{member.mention} has been kicked.")
 
-### Banning member ###
+### Banning ###
 @client.command()
 @commands.has_role("DS-Bot")
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.channel.send(f"{member.mention} has been banned.")
 
-### Unbanning member ###
+### Unbanning ###
 @client.command()
 @commands.has_role("DS-Bot")
 async def unban(ctx, *, member):
@@ -71,13 +70,13 @@ async def unban(ctx, *, member):
             await ctx.send(f"{user.mention} has been unbanned.")
             return
 
-### Exception handler ###
+### Exception handling ###
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
 
-### Echoing a message ###
+### Echoing ###
 @client.command()
 @commands.has_role("DS-Bot")
 async def echo(ctx):
@@ -89,7 +88,7 @@ async def echo(ctx):
         output += " "
     await ctx.channel.send(output)
 
-### Send dm to a member ###
+### Dm a member ###
 @client.command()
 @commands.has_role("DS-Bot")
 async def dm(ctx, member: discord.Member, *, content):
@@ -98,17 +97,17 @@ async def dm(ctx, member: discord.Member, *, content):
     await channel.send(content)
     await ctx.channel.send(f'"{content}" has been sent to {member}')
 
-### Music ###
+###### Music ######
 
-###### Bot joining ######
+### Bot joining a voice channel ###
 @client.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
 
-###### Bot leaving ######
+### Bot leaving a voice channel ###
 @client.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
 
-client.run(os.environ["DISCORD_TOKEN"]);
+client.run(os.environ["DISCORD_TOKEN"])
