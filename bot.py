@@ -35,7 +35,7 @@ async def ping(ctx):
 
 ### Deleting ###
 @client.command()
-@commands.has_role("DS-Bot")
+@commands.has_role(".")
 async def delete(ctx, amount=1):
     if amount==1:
         await ctx.send(f'{ctx.author.mention} Please define range of deletion after command.\nExample: ".delete 5"')
@@ -44,21 +44,21 @@ async def delete(ctx, amount=1):
 
 ### Kick ###
 @client.command()
-@commands.has_role("DS-Bot")
+@commands.has_role(".")
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.channel.send(f"{member.mention} has been kicked.")
 
 ### Banning ###
 @client.command()
-@commands.has_role("DS-Bot")
+@commands.has_role(".")
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.channel.send(f"{member.mention} has been banned.")
 
 ### Unbanning ###
 @client.command()
-@commands.has_role("DS-Bot")
+@commands.has_role(".")
 async def unban(ctx, *, member):
     banned_list = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
@@ -78,7 +78,7 @@ async def on_command_error(ctx, error):
 
 ### Echoing ###
 @client.command()
-@commands.has_role("DS-Bot")
+@commands.has_role(".")
 async def echo(ctx):
     await ctx.channel.purge(limit=1)
     msg = ctx.message.content.split()
@@ -90,7 +90,7 @@ async def echo(ctx):
 
 ### Dm a member ###
 @client.command()
-@commands.has_role("DS-Bot")
+@commands.has_role(".")
 async def dm(ctx, member: discord.Member, *, content):
     await ctx.channel.purge(limit=1)
     channel = await member.create_dm()
