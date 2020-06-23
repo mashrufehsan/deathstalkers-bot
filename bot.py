@@ -35,7 +35,7 @@ async def ping(ctx):
 
 ### Deleting ###
 @client.command()
-@commands.has_role(".")
+@commands.has_role("DS-Bot")
 async def delete(ctx, amount=1):
     if amount==1:
         await ctx.send(f'{ctx.author.mention} Please define range of deletion after command.\nExample: ".delete 5"')
@@ -44,21 +44,21 @@ async def delete(ctx, amount=1):
 
 ### Kick ###
 @client.command()
-@commands.has_role(".")
+@commands.has_role("DS-Bot")
 async def kick(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.channel.send(f"{member.mention} has been kicked.")
 
 ### Banning ###
 @client.command()
-@commands.has_role(".")
+@commands.has_role("DS-Bot")
 async def ban(ctx, member : discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.channel.send(f"{member.mention} has been banned.")
 
 ### Unbanning ###
 @client.command()
-@commands.has_role(".")
+@commands.has_role("DS-Bot")
 async def unban(ctx, *, member):
     banned_list = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
@@ -78,7 +78,7 @@ async def on_command_error(ctx, error):
 
 ### Echoing ###
 @client.command()
-@commands.has_role(".")
+@commands.has_role("DS-Bot")
 async def echo(ctx):
     await ctx.channel.purge(limit=1)
     msg = ctx.message.content.split()
@@ -90,7 +90,7 @@ async def echo(ctx):
 
 ### Dm a member ###
 @client.command()
-@commands.has_role(".")
+@commands.has_role("DS-Bot")
 async def dm(ctx, member: discord.Member, *, content):
     await ctx.channel.purge(limit=1)
     channel = await member.create_dm()
@@ -106,8 +106,9 @@ async def avatar(ctx, member: discord.Member):
     await ctx.send(embed= embed)
     #await ctx.send("{}".format(member.avatar_url))
 
+
 ###### Music ######
-players = {}
+
 ### Bot joining a voice channel ###
 @client.command()
 async def join(ctx):
@@ -119,13 +120,5 @@ async def join(ctx):
 async def leave(ctx):
     await ctx.voice_client.disconnect()
 
-### Playing YT ###
-@client.command()
-async def play(ctx, url):
-    server = ctx.guild
-    voice_client = get(client.voice_clients, guild=ctx.guild)
-    player = await voice_client.create_ytdl_player(url)
-    player[server.id] = player
-    player.start()
 
 client.run(os.environ["DISCORD_TOKEN"])
