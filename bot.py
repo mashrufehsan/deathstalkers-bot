@@ -38,7 +38,7 @@ async def ping(ctx):
 @commands.has_role(".")
 async def delete(ctx, amount=1):
     if amount==1:
-        await ctx.send(f'{ctx.author.mention} Please define range of deletion after command.\nExample: ".delete 5"')
+        await ctx.send(f'{ctx.author.mention} Please define range of deletion after command.\nExample: "!delete 5"')
     else:
         await ctx.channel.purge(limit=amount+1)
 
