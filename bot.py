@@ -106,9 +106,8 @@ async def avatar(ctx, member: discord.Member):
     await ctx.send(embed= embed)
     #await ctx.send("{}".format(member.avatar_url))
 
-
 ###### Music ######
-
+players = {}
 ### Bot joining a voice channel ###
 @client.command()
 async def join(ctx):
@@ -120,5 +119,13 @@ async def join(ctx):
 async def leave(ctx):
     await ctx.voice_client.disconnect()
 
+### Playing YT ###
+@client.command()
+async def play(ctx, url):
+    server = ctx.guild
+    voice_client = get(client.voice_clients, guild=ctx.guild)
+    player = await voice_client.create_ytdl_player(url)
+    player[server.id] = player
+    player.start()
 
 client.run(os.environ["DISCORD_TOKEN"])
