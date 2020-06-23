@@ -97,6 +97,16 @@ async def dm(ctx, member: discord.Member, *, content):
     await channel.send(content)
     await ctx.channel.send(f'"{content}" has been sent to {member}')
 
+### User Avatar ###
+@client.command()
+async def avatar(ctx, member: discord.Member):
+    embed=discord.Embed(color=0x229954)
+    embed.set_author(name=member.name)
+    embed.set_image(url=member.avatar_url)
+    await ctx.send(embed= embed)
+    #await ctx.send("{}".format(member.avatar_url))
+
+
 ###### Music ######
 
 ### Bot joining a voice channel ###
@@ -109,5 +119,6 @@ async def join(ctx):
 @client.command()
 async def leave(ctx):
     await ctx.voice_client.disconnect()
+
 
 client.run(os.environ["DISCORD_TOKEN"])
