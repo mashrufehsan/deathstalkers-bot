@@ -106,6 +106,25 @@ async def avatar(ctx, member: discord.Member):
     await ctx.send(embed= embed)
     #await ctx.send("{}".format(member.avatar_url))
 
+### Random truth ###
+@client.command()
+async def truth(ctx, *, question):
+    responses = ["Yes.",
+                 "No.",
+                 "Definitely.",
+                 "Absolutely.",
+                 "Maybe."]
+    await ctx.send(f"{ctx.author.mention} {random.choice(responses)}")
+
+### Random slang ###
+@client.command()
+async def slang(ctx, member: discord.Member):
+    await ctx.channel.purge(limit=1)
+    responses = ["Tor maire chudi.",
+                 "Tor kane muita sing mach charum.",
+                 "Tor maire bap.",
+                 "Tor hogay amar shona.",]
+    await ctx.send(f"{member.mention} {random.choice(responses)}")
 
 ###### Music ######
 
