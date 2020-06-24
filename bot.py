@@ -6,7 +6,7 @@ import os
 import asyncio
 import youtube_dl
 
-client = commands.Bot(command_prefix = "!")
+client = commands.Bot(command_prefix = "\\")
 
 ### Bot booting ###
 @client.event
@@ -74,7 +74,7 @@ async def unban(ctx, *, member):
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!.")
+        await ctx.send(f"{ctx.author.mention} Oopppsss! Command not found!")
 
 ### Echoing ###
 @client.command()
