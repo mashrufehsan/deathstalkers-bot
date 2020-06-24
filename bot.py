@@ -119,7 +119,7 @@ async def truth(ctx, *, question):
 ### Random slang ###
 @client.command()
 async def slang(ctx, member: discord.Member):
-    await ctx.channel.purge(limit=1)
+    #await ctx.channel.purge(limit=1)
     responses = ["Tor maire chudi.",
                  "Tor kane muita sing mach charum.",
                  "Tor maire bap.",
