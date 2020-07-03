@@ -114,6 +114,7 @@ async def truth(ctx, *, question):
                  "No.",
                  "Definitely.",
                  "Absolutely.",
+                 "Abar jigay!",
                  "Maybe."]
     await ctx.send(f"{ctx.author.mention} {random.choice(responses)}")
 
