@@ -5,6 +5,7 @@ import shutil
 import os
 import asyncio
 import youtube_dl
+import random
 
 client = commands.Bot(command_prefix = "\\")
 
@@ -126,6 +127,7 @@ async def slang(ctx, member: discord.Member):
                  "Tor hogay amar shona.",]
     await ctx.send(f"{member.mention} {random.choice(responses)}")
 
+    
 ###### Music ######
 
 ### Bot joining a voice channel ###
@@ -140,4 +142,4 @@ async def leave(ctx):
     await ctx.voice_client.disconnect()
 
 
-client.run(os.environ["DISCORD_TOKEN"])
+client.run(os.environ['DISCORD_TOKEN'])
