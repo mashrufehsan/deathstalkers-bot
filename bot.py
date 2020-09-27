@@ -4,7 +4,6 @@ from discord.ext import commands
 import shutil
 import os
 import asyncio
-import youtube_dl
 import random
 
 client = commands.Bot(command_prefix = "\\")
